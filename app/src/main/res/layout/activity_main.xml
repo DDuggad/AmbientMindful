@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#2D2D32"
+    android:padding="20dp"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText">
+
+    <!-- App Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ambient Mindful"
+        android:textColor="#C8E6FF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- Rain Button -->
+    <Button
+        android:id="@+id/btnRain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Rain"
+        android:backgroundTint="#6495ED"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="15dp"/>
+
+    <!-- Forest Button -->
+    <Button
+        android:id="@+id/btnForest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Forest"
+        android:backgroundTint="#6495ED"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="15dp"/>
+
+    <!-- Fire Button -->
+    <Button
+        android:id="@+id/btnFire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Fire"
+        android:backgroundTint="#6495ED"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="15dp"/>
+
+    <!-- Ocean Button -->
+    <Button
+        android:id="@+id/btnOcean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Ocean"
+        android:backgroundTint="#6495ED"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="15dp"/>
+
+    <!-- Footer Text -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a sound to focus"
+        android:textColor="#888888"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
