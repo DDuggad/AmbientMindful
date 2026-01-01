@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">AmbientMindful</string>
+    <string name="app_name">Ambient Mindful</string>
+    <string name="app_subtitle">Mix your perfect atmosphere.</string>
+    <string name="sound_rain">Heavy Rain</string>
+    <string name="sound_forest">Forest Birds</string>
+    <string name="sound_fire">Campfire</string>
+    <string name="sound_ocean">Ocean Waves</string>
 </resources>

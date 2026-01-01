@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@drawable/gradient_bg"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -13,143 +13,69 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Title Section -->
+        <!-- Header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ambient\nMindful"
+            android:text="@string/app_name"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
+            android:textSize="32sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mix your perfect atmosphere."
+            android:text="@string/app_subtitle"
             android:textColor="#E0E0E0"
             android:textSize="16sp"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="30dp"/>
 
-        <!-- TRACK 1: RAIN -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/glass_card"
-            android:padding="20dp"
-            android:layout_marginBottom="20dp">
+        <!-- Sound Controls Container -->
+        <!-- We reuse the layout structure for simplicity -->
 
+        <!-- RAIN -->
+        <LinearLayout style="@style/GlassCardStyle">
             <Switch
                 android:id="@+id/switchRain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Heavy Rain"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:thumbTint="#FFFFFF"
-                android:trackTint="#64B5F6"/>
-
+                style="@style/SwitchStyle"
+                android:text="@string/sound_rain"/>
             <SeekBar
                 android:id="@+id/seekRain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:progress="50"
-                android:progressTint="#64B5F6"
-                android:thumbTint="#FFFFFF"/>
+                style="@style/SeekBarStyle"/>
         </LinearLayout>
 
-        <!-- TRACK 2: FOREST -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/glass_card"
-            android:padding="20dp"
-            android:layout_marginBottom="20dp">
-
+        <!-- FOREST -->
+        <LinearLayout style="@style/GlassCardStyle">
             <Switch
                 android:id="@+id/switchForest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Forest Birds"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:thumbTint="#FFFFFF"
-                android:trackTint="#81C784"/>
-
+                style="@style/SwitchStyle"
+                android:text="@string/sound_forest"/>
             <SeekBar
                 android:id="@+id/seekForest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:progress="50"
-                android:progressTint="#81C784"
-                android:thumbTint="#FFFFFF"/>
+                style="@style/SeekBarStyle"/>
         </LinearLayout>
 
-        <!-- TRACK 3: FIRE -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/glass_card"
-            android:padding="20dp"
-            android:layout_marginBottom="20dp">
-
+        <!-- FIRE -->
+        <LinearLayout style="@style/GlassCardStyle">
             <Switch
                 android:id="@+id/switchFire"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Campfire"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:thumbTint="#FFFFFF"
-                android:trackTint="#FFB74D"/>
-
+                style="@style/SwitchStyle"
+                android:text="@string/sound_fire"/>
             <SeekBar
                 android:id="@+id/seekFire"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:progress="50"
-                android:progressTint="#FFB74D"
-                android:thumbTint="#FFFFFF"/>
+                style="@style/SeekBarStyle"/>
         </LinearLayout>
 
-        <!-- TRACK 4: OCEAN -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/glass_card"
-            android:padding="20dp"
-            android:layout_marginBottom="40dp">
-
+        <!-- OCEAN -->
+        <LinearLayout style="@style/GlassCardStyle">
             <Switch
                 android:id="@+id/switchOcean"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ocean Waves"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:thumbTint="#FFFFFF"
-                android:trackTint="#4FC3F7"/>
-
+                style="@style/SwitchStyle"
+                android:text="@string/sound_ocean"/>
             <SeekBar
                 android:id="@+id/seekOcean"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:progress="50"
-                android:progressTint="#4FC3F7"
-                android:thumbTint="#FFFFFF"/>
+                style="@style/SeekBarStyle"/>
         </LinearLayout>
 
     </LinearLayout>

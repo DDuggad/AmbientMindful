@@ -1,9 +1,46 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AmbientMindful" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.AmbientMindful" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#6200EE</item>
+        <item name="colorPrimaryDark">#3700B3</item>
+        <item name="colorAccent">#03DAC5</item>
+        <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.AmbientMindful" parent="Base.Theme.AmbientMindful" />
+    <!-- ============================================== -->
+    <!-- CUSTOM STYLES (Added to simplify layout code)  -->
+    <!-- ============================================== -->
+
+    <!-- Style for the Glass Cards -->
+    <style name="GlassCardStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/glass_card</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <!-- Style for the Switches -->
+    <style name="SwitchStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:thumbTint">#FFFFFF</item>
+        <item name="android:trackTint">#64B5F6</item>
+    </style>
+
+    <!-- Style for the Volume Sliders (SeekBars) -->
+    <style name="SeekBarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:progress">50</item>
+        <item name="android:progressTint">#64B5F6</item>
+        <item name="android:thumbTint">#FFFFFF</item>
+    </style>
+
 </resources>
