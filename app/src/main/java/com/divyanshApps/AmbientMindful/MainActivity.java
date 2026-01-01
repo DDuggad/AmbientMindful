@@ -1,80 +1,99 @@
 package com.divyanshApps.AmbientMindful;
 
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import androidx.appcompat.app.AppCompatActivity;
 
-@SuppressLint("SetTextI18n") // Suppress warnings for hardcoded text
+@SuppressLint("UseSwitchCompatOrMaterialXml")
 public class MainActivity extends AppCompatActivity {
 
-    private MediaPlayer rainPlayer, forestPlayer, firePlayer, oceanPlayer;
+    // Array to hold 4 players: 0=Rain, 1=Forest, 2=Fire, 3=Ocean
+    private final MediaPlayer[] players = new MediaPlayer[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Link buttons to logic
-        setupButton(findViewById(R.id.btnRain), R.raw.rain, "Rain");
-        setupButton(findViewById(R.id.btnForest), R.raw.forest, "Forest");
-        setupButton(findViewById(R.id.btnFire), R.raw.fire, "Fire");
-        setupButton(findViewById(R.id.btnOcean), R.raw.ocean, "Ocean");
+        // Initialize all tracks
+        setupTrack(R.id.switchRain,   R.id.seekRain,   R.raw.rain,   0);
+        setupTrack(R.id.switchForest, R.id.seekForest, R.raw.forest, 1);
+        setupTrack(R.id.switchFire,   R.id.seekFire,   R.raw.fire,   2);
+        setupTrack(R.id.switchOcean,  R.id.seekOcean,  R.raw.ocean,  3);
     }
 
-    private void setupButton(Button btn, int soundResId, String name) {
-        btn.setOnClickListener(v -> {
-            MediaPlayer player = getPlayer(name);
+    /**
+     * Core Logic: Connects UI (Switch/SeekBar) to Audio (MediaPlayer)
+     */
+    private void setupTrack(int switchId, int seekId, int rawFile, int index) {
+        Switch toggle = findViewById(switchId);
+        SeekBar volumeSlider = findViewById(seekId);
 
-            if (player != null && player.isPlaying()) {
-                // STOP LOGIC
-                player.pause();
-                player.seekTo(0);
-                btn.setText("Play " + name);
-                // Reset color to Original Blue (0xFF6495ED)
-                btn.setBackgroundTintList(ColorStateList.valueOf(0xFF6495ED));
-            } else {
-                // PLAY LOGIC
-                if (player == null) {
-                    player = MediaPlayer.create(this, soundResId);
-                    player.setLooping(true);
-                    setPlayer(name, player);
+        // 1. Handle ON/OFF
+        toggle.setOnCheckedChangeListener((view, isChecked) -> {
+            if (isChecked) {
+                // Initialize & Start
+                if (players[index] == null) {
+                    players[index] = MediaPlayer.create(this, rawFile);
+                    players[index].setLooping(true);
                 }
-                player.start();
-                btn.setText("Stop " + name);
-                // Change color to Green (0xFF3CB371)
-                btn.setBackgroundTintList(ColorStateList.valueOf(0xFF3CB371));
+                players[index].start();
+
+                // Sync volume immediately
+                updateVolume(index, volumeSlider.getProgress());
+            } else {
+                // Stop & Release Resource
+                if (players[index] != null) {
+                    players[index].stop();
+                    players[index].release();
+                    players[index] = null;
+                }
+            }
+        });
+
+        // 2. Handle Volume (Real-time mixing)
+        volumeSlider.setOnSeekBarChangeListener(new SimpleSeekBarListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (players[index] != null) {
+                    updateVolume(index, progress);
+                }
             }
         });
     }
 
-    private MediaPlayer getPlayer(String name) {
-        switch (name) {
-            case "Rain": return rainPlayer;
-            case "Forest": return forestPlayer;
-            case "Fire": return firePlayer;
-            case "Ocean": return oceanPlayer;
-            default: return null;
+    /**
+     * Helper: Convert slider 0-100 to volume 0.0-1.0
+     */
+    private void updateVolume(int index, int progress) {
+        float vol = progress / 100f;
+        if (players[index] != null) {
+            players[index].setVolume(vol, vol);
         }
     }
 
-    private void setPlayer(String name, MediaPlayer player) {
-        switch (name) {
-            case "Rain": rainPlayer = player; break;
-            case "Forest": forestPlayer = player; break;
-            case "Fire": firePlayer = player; break;
-            case "Ocean": oceanPlayer = player; break;
-        }
-    }
-
+    /**
+     * Cleanup: Only release players on valid destruction
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (rainPlayer != null) rainPlayer.release();
-        if (forestPlayer != null) forestPlayer.release();
-        if (firePlayer != null) firePlayer.release();
-        if (oceanPlayer != null) oceanPlayer.release();
+        for (MediaPlayer p : players) {
+            if (p != null) {
+                p.release();
+            }
+        }
+    }
+
+    /**
+     * Abstract Helper to remove clutter from the main code.
+     * This fixes warnings about "missing override methods".
+     */
+    private abstract static class SimpleSeekBarListener implements SeekBar.OnSeekBarChangeListener {
+        @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+        @Override public void onStopTrackingTouch(SeekBar seekBar) {}
     }
 }
